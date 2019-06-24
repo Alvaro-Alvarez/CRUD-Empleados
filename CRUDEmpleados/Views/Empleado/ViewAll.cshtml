@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CRUDEmpleados.Models.empleado>
+
+@{
+    ViewBag.Title = "ViewAll";
+    Layout = null;
+}
+
+
+<table class="table table-striped table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posicion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Oficina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Posicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Oficina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salario)
+        </td>
+        <td>
+            <a class="btn btn-primary btn-sm" onclick="Edit('@Url.Action("AgregaroEditar", "Empleado", new { id=@item.id})')"><i class="fa fa-pencil fa-lg"></i></a>
+            <a class="btn btn-danger btn-sm" onclick="Eliminar('@Url.Action("Eliminar", "Empleado", new { id=@item.id})')"><i class="fa fa-trash fa-lg"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

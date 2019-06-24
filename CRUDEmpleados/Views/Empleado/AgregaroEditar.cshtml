@@ -1,0 +1,73 @@
+﻿@model CRUDEmpleados.Models.empleado
+
+@{
+    ViewBag.Title = "AgregaroEditar";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("AgregaroEditar", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data", onSubmit = "return jQueryAjaxPost(this);", data_restUrl = Url.Action("AgregaroEditar", "Empleado", new { id = 0}) }))
+{
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            @Html.HiddenFor(model => model.RutaImagen)
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Posicion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Posicion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Posicion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Oficina, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Oficina, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Oficina, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Salario, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Salario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Salario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Agregar" class="btn btn-default" />
+                        @if (Model.id != 0)
+                        {
+                            <a class="btn btn-success" onclick="refreshAddNewTab('@Url.Action("AgregaroEditar","Empleado",new{id=0})',false)"><i class="fa fa-plus"></i> Agregar Nuevo</a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RutaImagen, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <img src="@Url.Content(Model.RutaImagen)" style="margin:10px" height="200" width="200" id="vistaPreviaImagen" />
+                        <input type="file" name="CargaImagen" accept="imagen/jpeg, imagen/png" onchange="MuestraVistaImagen(this, document.getElementById('vistaPreviaImagen'))" />
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+}

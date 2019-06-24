@@ -1,0 +1,12 @@
+CRUD de empleados usando:
+
+- ASP.NET MVC
+- C#
+- LINQ
+- EntityFramework
+- ADO.NET
+- Mysql DB
+- Boostrap
+- HTML, CSS
+- JavaScript, Ajax
+- JQuery
